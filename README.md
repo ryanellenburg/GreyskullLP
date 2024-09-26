@@ -14,23 +14,28 @@ GreyskullLP is a fitness app designed to help users track their workout routines
 
 ## Technologies Used
 - **Front End**: JavaScript (React)
-- **Back End**: Python (Flask/Django)
+- **Back End**: Python (Flask or Django TBD)
 - **Database**: SQLite (or TBD)
 
 ## Installation Instructions
 1. Clone the repository:
+   ```bash
    git clone https://github.com/ryanellenburg/GreyskullLP.git
    cd GreyskullLP
-2. Set up the front-end:
+3. Set up the front-end:
+   ```bash
    cd frontend  # If using a separate folder for front-end code
    npm install  # or yarn install
-3. Set up the back-end:
+5. Set up the back-end:
+   ```bash
    cd backend  # If using a separate folder for back-end code
    pip install -r requirements.txt
-4. Run the application:
+7. Run the application:
    - For the front end:
+     ```bash
      npm start  # or yarn start
    - For the back end:
+     ```bash
      python app.py  # Adjust as needed for your entry point
 
 ## Usage Instructions
@@ -47,7 +52,7 @@ Contributions are welcome! If you would like to contribute to the project, pleas
 - Open a pull request.
 
 ## License
-This project is licensed under the GNU GPL License
+This project is licensed under the GNU GPL License.
 
 ## Contact
-For inquiries or feedback, please reach out to ryanellenburg@gmail.com
+For inquiries or feedback, please reach out to ryanellenburg@gmail.com.
