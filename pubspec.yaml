@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -109,6 +110,9 @@ flutter:
   fonts:
     - family: Karla
       fonts:
-        - asset: assets/fonts/Karla-Regular.ttf
-        - asset: assets/fonts/Karla-Bold.ttf
+        - asset: assets/fonts/Karla/Karla-Regular.ttf
+        - asset: assets/fonts/Karla/Karla-Bold.ttf
           weight: 700
+    - family: MaterialSymbols
+      fonts:
+        - asset: assets/fonts/MaterialSymbols/MaterialSymbolsOutlined.ttf
