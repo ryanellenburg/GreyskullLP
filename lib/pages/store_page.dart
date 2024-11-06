@@ -5,9 +5,6 @@ class StorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Store')),
-      body: const Center(child: Text('Store Page')),
-    );
+    return const Center(child: Text('Store Page'));
   }
 }

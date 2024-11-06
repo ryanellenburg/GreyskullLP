@@ -5,9 +5,6 @@ class WorkoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Workout')),
-      body: const Center(child: Text('Workout Page')),
-    );
+    return const Center(child: Text('Workout Page'));
   }
 }

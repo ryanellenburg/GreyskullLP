@@ -5,9 +5,6 @@ class DietPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Diet')),
-      body: const Center(child: Text('Diet Page')),
-    );
+    return const Center(child: Text('Diet Page'));
   }
 }

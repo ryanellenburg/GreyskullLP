@@ -5,9 +5,6 @@ class ForumPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Forum')),
-      body: const Center(child: Text('Forum Page')),
-    );
+    return const Center(child: Text('Forum Page'));
   }
 }

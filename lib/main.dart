@@ -76,7 +76,7 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  int _selectedIndex = -1; // Start with -1 for no selection
+  int _selectedIndex = -1; // Start with -1 to show HomePage initially
 
   final List<Widget> _pages = const [
     WorkoutPage(),
@@ -89,17 +89,18 @@ class MainPageState extends State<MainPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index; // Update the selected index
+      _selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final exerciseIcon = Icon(IconData(0xf6e6, fontFamily: 'MaterialSymbols'));
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Greyskull LP Workout'),
+        title: Text(_selectedIndex == -1 ? "Official Greyskull LP App" : _getPageTitle(_selectedIndex)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -112,45 +113,36 @@ class MainPageState extends State<MainPage> {
           ),
         ],
       ),
-      body: _selectedIndex == -1 ? const HomePage() : _pages[_selectedIndex], // Load HomePage initially
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: theme.bottomNavigationBarTheme.backgroundColor,
-        selectedItemColor: theme.bottomNavigationBarTheme.selectedItemColor,
-        unselectedItemColor: theme.bottomNavigationBarTheme.unselectedItemColor,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center), // Workout icon
-            label: 'Workout',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.forum), // Forum icon
-            label: 'Forum',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant), // Diet icon
-            label: 'Diet',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.stacked_line_chart), // Stats icon
-            label: 'Stats',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history), // History icon
-            label: 'History',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), // Store icon
-            label: 'Store',
-          ),
-        ],
-        currentIndex: _selectedIndex >= 0 ? _selectedIndex : 0, // Show the current index, default to 0 when -1
-        onTap: (index) {
-          // When tapping on the navigation, set _selectedIndex
-          if (index != _selectedIndex) {
-            _onItemTapped(index);
-          }
-        },
-      ),
+      body: _selectedIndex == -1 ? HomePage(onItemSelected: _onItemTapped) : _pages[_selectedIndex],
+      bottomNavigationBar: _selectedIndex == -1
+          ? null
+          : BottomNavigationBar(
+              backgroundColor: theme.bottomNavigationBarTheme.backgroundColor,
+              selectedItemColor: theme.bottomNavigationBarTheme.selectedItemColor,
+              unselectedItemColor: theme.bottomNavigationBarTheme.unselectedItemColor,
+              items: [
+                BottomNavigationBarItem(icon: exerciseIcon, label: 'Workout'),
+                BottomNavigationBarItem(icon: Icon(Icons.forum), label: 'Forum'),
+                BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: 'Diet'),
+                BottomNavigationBarItem(icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
+                BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+                BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Store'),
+              ],
+              currentIndex: _selectedIndex >= 0 ? _selectedIndex : 0,
+              onTap: _onItemTapped,
+            ),
     );
+  }
+
+  String _getPageTitle(int index) {
+    switch (index) {
+      case 0: return 'Workout';
+      case 1: return 'Forum';
+      case 2: return 'Diet';
+      case 3: return 'Stats';
+      case 4: return 'History';
+      case 5: return 'Store';
+      default: return 'Greyskull LP Workout';
+    }
   }
 }
