@@ -77,20 +77,32 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage> {
   int _selectedIndex = -1; // Start with -1 to show HomePage initially
+  final ValueNotifier<String> _appBarTitle = ValueNotifier("Official Greyskull LP App");
 
-  final List<Widget> _pages = const [
-    WorkoutPage(),
-    ForumPage(),
-    DietPage(),
-    StatsPage(),
-    HistoryPage(),
-    StorePage(),
-  ];
+  final List<Widget> _pages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _pages.add(WorkoutPage(titleNotifier: _appBarTitle)); // Pass notifier to WorkoutPage
+    _pages.addAll([
+      const ForumPage(),
+      const DietPage(),
+      const StatsPage(),
+      const HistoryPage(),
+      const StorePage(),
+    ]);
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    if (index == 0) {
+      _appBarTitle.value = "Workout"; // Reset title when switching back
+    } else {
+      _appBarTitle.value = _getPageTitle(index);
+    }
   }
 
   @override
@@ -100,7 +112,21 @@ class MainPageState extends State<MainPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_selectedIndex == -1 ? "Official Greyskull LP App" : _getPageTitle(_selectedIndex)),
+        title: ValueListenableBuilder<String>(
+          valueListenable: _appBarTitle,
+          builder: (context, title, _) => Text(title),
+        ),
+        leading: _selectedIndex == -1
+            ? null
+            : IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = -1;
+                    _appBarTitle.value = "Official Greyskull LP App"; // Reset title
+                  });
+                },
+              ),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
